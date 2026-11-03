@@ -159,3 +159,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
   console.log("All StarGram buttons initialized");
 });
+
+async function stargramLogin() {
+  const telegram = window.Telegram?.WebApp;
+  const initData = telegram?.initData;
+
+  if (!initData) {
+    console.log("StarGram: браузерный гостевой режим");
+    return null;
+  }
+
+  try {
+    const response = await fetch(
+      "https://mqklzkuuqytdcuwytuwt.supabase.co/functions/v1/stargram-api",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": "sb_publishable_fIsRoO9o7UCNhBfH_rqS9Q_01hMbezY"
+        },
+        body: JSON.stringify({ initData })
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok || !result.ok) {
+      throw new Error(result.error || "Ошибка авторизации");
+    }
+
+    window.stargramProfile = result.profile;
+
+    console.log("StarGram: авторизация успешна", result.profile);
+
+    return result.profile;
+  } catch (error) {
+    console.error("StarGram login:", error);
+    return null;
+  }
+}
+
+stargramLogin();
+
