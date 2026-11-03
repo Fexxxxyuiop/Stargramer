@@ -296,3 +296,95 @@ button {
 .empty p {
   color: var(--muted);
 }
+
+/* STARGRAM — TELEGRAM STYLE */
+
+#auctionPage {
+  background: #17212b !important;
+  color: #f5f5f5 !important;
+  padding: 18px 14px 100px !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+#auctionPage h1,
+#auctionPage h2 {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  letter-spacing: -.4px;
+  margin: 5px 0 8px;
+}
+
+#auctionPage p {
+  line-height: 1.45;
+}
+
+#auctionPage > div {
+  border-radius: 12px !important;
+}
+
+#auctionPage [style*="background:#202127"],
+#auctionPage [style*="background: #202127"] {
+  background: #202c38 !important;
+  border: 1px solid #293846 !important;
+  border-radius: 12px !important;
+  padding: 15px !important;
+  margin-top: 12px !important;
+}
+
+#auctionPage button {
+  background: #3390ec !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 9px !important;
+  padding: 11px 16px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+}
+
+#auctionPage button:active {
+  opacity: .75;
+}
+
+#auctionPage h3 {
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  margin: 4px 0 8px !important;
+}
+
+#auctionPage p[style*="color:#aaa"],
+#auctionPage p[style*="color: #aaa"] {
+  color: #91a4b5 !important;
+}
+
+#auctionPage #auctionBalance {
+  background: #202c38 !important;
+  border: 1px solid #293846 !important;
+  border-radius: 12px !important;
+  padding: 14px !important;
+}
+
+#auctionPage #auctionLots {
+  margin-top: 15px;
+}
+
+#auctionPage #auctionLots > div {
+  background: #202c38 !important;
+  border: 1px solid #293846 !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  margin: 10px 0 !important;
+}
+
+#auctionPage input {
+  background: #17212b;
+  border: 1px solid #344454;
+  color: white;
+  border-radius: 9px;
+  padding: 12px;
+}
+
+#auctionPage .muted {
+  color: #91a4b5;
+}
+
