@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#17212b">
+  <title>StarGram</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-icon">✦</span><span>StarGram</span></div>
+    <button class="balance" id="balance">⭐ 0</button>
+  </header>
+
+  <main>
+    <section class="page active" id="chatsPage">
+      <div class="page-heading"><h1>Чаты</h1><button class="round-btn" id="newChatBtn" aria-label="Новый чат">＋</button></div>
+      <label class="search"><span>⌕</span><input id="chatSearch" placeholder="Поиск" autocomplete="off"></label>
+      <div id="chatList" class="chat-list"></div>
+      <p class="hint">Это стартовый интерфейс. Реальные переписки подключаются через сервер и базу данных.</p>
+    </section>
+
+    <section class="page" id="giftsPage">
+      <div class="page-heading"><h1>Подарки</h1></div>
+      <div class="banner"><div><b>Коллекция подарков</b><p>Официальные подарки Telegram появятся после подключения Bot API.</p></div><span class="banner-art">🎁</span></div>
+      <div class="section-title">Каталог-пример</div>
+      <div class="gift-grid" id="giftGrid"></div>
+      <p class="hint">Показанные карточки — демонстрационные изображения, не реальные NFT и не предметы для покупки.</p>
+    </section>
+
+    <section class="page" id="starsPage">
+      <div class="page-heading"><h1>Звёзды</h1></div>
+      <div class="stars-card"><div class="stars-big">⭐</div><div class="muted">Твой демонстрационный баланс</div><div class="stars-total" id="starsTotal">0</div><button class="primary" id="claimBtn">Получить 25 ⭐</button><div class="muted small" id="claimStatus">Ежедневная награда</div></div>
+      <div class="section-title">История</div><div class="history-row"><span>🎁 Ежедневная награда</span><b>+25 ⭐</b></div>
+      <p class="hint">Баланс сейчас хранится только на этом устройстве. Перед запуском для пользователей его нужно перенести на сервер.</p>
+    </section>
+
+    <section class="page" id="profilePage">
+      <div class="page-heading"><h1>Профиль</h1><button class="round-btn" id="settingsBtn">⚙</button></div>
+      <div class="profile-card"><div class="avatar" id="avatar">SG</div><h2 id="displayName">Гость StarGram</h2><p id="username" class="muted">@guest</p><div class="profile-stats"><div><b id="profileBalance">0</b><span>⭐ Звёзды</span></div><div><b>0</b><span>🎁 Подарки</span></div></div></div>
+      <div class="menu-row">🛡️ <span>Конфиденциальность</span><span>›</span></div>
+      <div class="menu-row">🔔 <span>Уведомления</span><span>›</span></div>
+      <div class="menu-row">ℹ️ <span>О StarGram</span><span>›</span></div>
+    </section>
+  </main>
+
+  <nav class="tabbar">
+    <button class="tab active" data-page="chatsPage"><span>▤</span>Чаты</button>
+    <button class="tab" data-page="giftsPage"><span>🎁</span>Подарки</button>
+    <button class="tab" data-page="starsPage"><span>⭐</span>Звёзды</button>
+    <button class="tab" data-page="profilePage"><span>●</span>Профиль</button>
+  </nav>
+  <script src="app.js"></script>
+</body>
+</html>
