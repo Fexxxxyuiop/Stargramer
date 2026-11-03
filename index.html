@@ -1,8 +1,9 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="theme-color" content="#17212b">
   <title>StarGram</title>
   <link rel="stylesheet" href="style.css">
@@ -10,48 +11,81 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="brand"><span class="brand-icon">✦</span><span>StarGram</span></div>
-    <button class="balance" id="balance">⭐ 0</button>
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <h1 id="pageTitle">StarGram</h1>
+    <button class="search-btn" id="searchBtn">⌕</button>
   </header>
 
   <main>
+    <section class="search-wrap" id="searchWrap" hidden>
+      <input id="chatSearch" placeholder="Поиск">
+    </section>
+
     <section class="page active" id="chatsPage">
-      <div class="page-heading"><h1>Чаты</h1><button class="round-btn" id="newChatBtn" aria-label="Новый чат">＋</button></div>
-      <label class="search"><span>⌕</span><input id="chatSearch" placeholder="Поиск" autocomplete="off"></label>
-      <div id="chatList" class="chat-list"></div>
-      <p class="hint">Это стартовый интерфейс. Реальные переписки подключаются через сервер и базу данных.</p>
+      <div class="stories">
+        <div class="story"><div class="story-avatar add">＋</div><small>Моя история</small></div>
+        <div class="story"><div class="story-avatar">🌟</div><small>StarGram</small></div>
+        <div class="story"><div class="story-avatar">🎁</div><small>Gifts</small></div>
+        <div class="story"><div class="story-avatar">🚀</div><small>Новости</small></div>
+      </div>
+      <div class="section-title">Все чаты</div>
+      <div id="chatList">
+        <div class="chat-row">
+          <div class="chat-avatar blue">S</div>
+          <div class="chat-info"><b>StarGram</b><p>Добро пожаловать!</p></div>
+          <time>сейчас</time>
+        </div>
+        <div class="chat-row">
+          <div class="chat-avatar">🎁</div>
+          <div class="chat-info"><b>Подарки</b><p>Твоя коллекция подарков</p></div>
+          <time>вчера</time>
+        </div>
+        <div class="chat-row">
+          <div class="chat-avatar">⭐</div>
+          <div class="chat-info"><b>StarGram News</b><p>Новости приложения</p></div>
+          <time>пн</time>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="contactsPage">
+      <div class="empty">
+        <div class="empty-icon">👥</div>
+        <h2>Контакты</h2>
+        <p>Здесь появятся пользователи StarGram</p>
+      </div>
     </section>
 
     <section class="page" id="giftsPage">
-      <div class="page-heading"><h1>Подарки</h1></div>
-      <div class="banner"><div><b>Коллекция подарков</b><p>Официальные подарки Telegram появятся после подключения Bot API.</p></div><span class="banner-art">🎁</span></div>
-      <div class="section-title">Каталог-пример</div>
-      <div class="gift-grid" id="giftGrid"></div>
-      <p class="hint">Показанные карточки — демонстрационные изображения, не реальные NFT и не предметы для покупки.</p>
-    </section>
-
-    <section class="page" id="starsPage">
-      <div class="page-heading"><h1>Звёзды</h1></div>
-      <div class="stars-card"><div class="stars-big">⭐</div><div class="muted">Твой демонстрационный баланс</div><div class="stars-total" id="starsTotal">0</div><button class="primary" id="claimBtn">Получить 25 ⭐</button><div class="muted small" id="claimStatus">Ежедневная награда</div></div>
-      <div class="section-title">История</div><div class="history-row"><span>🎁 Ежедневная награда</span><b>+25 ⭐</b></div>
-      <p class="hint">Баланс сейчас хранится только на этом устройстве. Перед запуском для пользователей его нужно перенести на сервер.</p>
+      <div class="section-title">Подарки StarGram</div>
+      <div class="gift-grid" id="giftGrid">
+        <div class="gift-card"><span>🌹</span><b>Роза</b></div>
+        <div class="gift-card"><span>👑</span><b>Корона</b></div>
+        <div class="gift-card"><span>🚀</span><b>Ракета</b></div>
+        <div class="gift-card"><span>💎</span><b>Кристалл</b></div>
+      </div>
+      <p class="note">Демонстрационные подарки. Официальные Telegram Gifts подключим отдельно.</p>
     </section>
 
     <section class="page" id="profilePage">
-      <div class="page-heading"><h1>Профиль</h1><button class="round-btn" id="settingsBtn">⚙</button></div>
-      <div class="profile-card"><div class="avatar" id="avatar">SG</div><h2 id="displayName">Гость StarGram</h2><p id="username" class="muted">@guest</p><div class="profile-stats"><div><b id="profileBalance">0</b><span>⭐ Звёзды</span></div><div><b>0</b><span>🎁 Подарки</span></div></div></div>
-      <div class="menu-row">🛡️ <span>Конфиденциальность</span><span>›</span></div>
-      <div class="menu-row">🔔 <span>Уведомления</span><span>›</span></div>
-      <div class="menu-row">ℹ️ <span>О StarGram</span><span>›</span></div>
+      <div class="profile">
+        <div class="profile-avatar" id="avatar">S</div>
+        <h2 id="displayName">Пользователь</h2>
+        <p id="username">@stargram_user</p>
+        <div class="balance">⭐ <span id="balance">0</span></div>
+        <button class="daily-btn" id="claimBtn">Получить 25 ⭐</button>
+        <p id="claimStatus">Ежедневная награда</p>
+      </div>
     </section>
   </main>
 
-  <nav class="tabbar">
-    <button class="tab active" data-page="chatsPage"><span>▤</span>Чаты</button>
-    <button class="tab" data-page="giftsPage"><span>🎁</span>Подарки</button>
-    <button class="tab" data-page="starsPage"><span>⭐</span>Звёзды</button>
-    <button class="tab" data-page="profilePage"><span>●</span>Профиль</button>
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-target="chatsPage"><span>▤</span>Чаты</button>
+    <button class="nav-item" data-target="contactsPage"><span>♙</span>Контакты</button>
+    <button class="nav-item" data-target="giftsPage"><span>🎁</span>Подарки</button>
+    <button class="nav-item" data-target="profilePage"><span>●</span>Профиль</button>
   </nav>
+
   <script src="app.js"></script>
 </body>
 </html>
