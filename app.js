@@ -7,14 +7,15 @@ const SUPABASE_KEY = "sb_publishable_fIsRoO9o7UCNhBfH_rqS9Q_01hMbezY";
 document.addEventListener("DOMContentLoaded", () => {
   console.log("StarGram started");
 
-  // Telegram WebApp
+  // Telegram
   const tg = window.Telegram?.WebApp;
+
   if (tg) {
     tg.ready();
     tg.expand();
   }
 
-  // Supabase connection
+  // Supabase
   if (
     window.supabase &&
     SUPABASE_URL.startsWith("https://") &&
@@ -24,84 +25,83 @@ document.addEventListener("DOMContentLoaded", () => {
       SUPABASE_URL,
       SUPABASE_KEY
     );
-    console.log("Supabase initialized");
+    console.log("Supabase connected");
   } else {
-    console.warn("Supabase not initialized. Check URL and key.");
+    console.warn("Check Supabase URL and Publishable Key");
   }
 
-  // ===== PAGE NAVIGATION =====
+  // NAVIGATION
   const navItems = document.querySelectorAll(".nav-item");
   const pages = document.querySelectorAll(".page");
+  const title = document.getElementById("pageTitle");
 
-  function openPage(pageId, button) {
-    const page = document.getElementById(pageId);
-    if (!page) {
-      console.warn("Page not found:", pageId);
-      return;
-    }
+  function showPage(id, button) {
+    const selected = document.getElementById(id);
 
-    pages.forEach((item) => {
-      item.style.display = "none";
+    if (!selected) return;
+
+    pages.forEach(page => {
+      page.classList.remove("active");
+      page.style.display = "none";
     });
 
-    page.style.display = "block";
+    selected.classList.add("active");
+    selected.style.display = "block";
 
-    navItems.forEach((item) => {
+    navItems.forEach(item => {
       item.classList.remove("active");
     });
 
-    if (button) button.classList.add("active");
+    button.classList.add("active");
 
-    const title = document.getElementById("pageTitle");
-    if (title && button) {
+    if (title) {
       title.textContent = button.textContent.trim();
     }
   }
 
-  navItems.forEach((button) => {
+  navItems.forEach(button => {
     button.addEventListener("click", () => {
-      openPage(button.dataset.target, button);
+      showPage(button.dataset.target, button);
     });
   });
 
-  // Show first page
-  const firstButton = navItems[0];
-  if (firstButton) {
-    openPage(firstButton.dataset.target, firstButton);
+  // Initial page
+  if (navItems.length > 0) {
+    showPage(navItems[0].dataset.target, navItems[0]);
   }
 
-  // ===== SEARCH =====
+  // SEARCH
   const searchBtn = document.getElementById("searchBtn");
   const searchWrap = document.getElementById("searchWrap");
   const chatSearch = document.getElementById("chatSearch");
 
   searchBtn?.addEventListener("click", () => {
-    if (!searchWrap) return;
-    searchWrap.style.display =
-      getComputedStyle(searchWrap).display === "none"
-        ? "block"
-        : "none";
+    if (searchWrap) {
+      searchWrap.hidden = !searchWrap.hidden;
+      if (!searchWrap.hidden) chatSearch?.focus();
+    }
   });
 
   chatSearch?.addEventListener("input", () => {
     const query = chatSearch.value.toLowerCase();
 
-    document.querySelectorAll(".chat-row").forEach((chat) => {
-      chat.style.display = chat.textContent.toLowerCase().includes(query)
-        ? ""
-        : "none";
+    document.querySelectorAll(".chat-row").forEach(chat => {
+      chat.style.display = chat.textContent
+        .toLowerCase()
+        .includes(query) ? "" : "none";
     });
   });
 
-  // ===== PROFILE =====
+  // PROFILE
   const user = tg?.initDataUnsafe?.user;
 
   if (user) {
-    const displayName = document.getElementById("displayName");
+    const name = document.getElementById("displayName");
     const username = document.getElementById("username");
+    const avatar = document.getElementById("avatar");
 
-    if (displayName) {
-      displayName.textContent =
+    if (name) {
+      name.textContent =
         [user.first_name, user.last_name].filter(Boolean).join(" ");
     }
 
@@ -110,9 +110,13 @@ document.addEventListener("DOMContentLoaded", () => {
         ? "@" + user.username
         : "Telegram пользователь";
     }
+
+    if (avatar) {
+      avatar.textContent = (user.first_name || "S").charAt(0);
+    }
   }
 
-  // ===== DEMO STARS =====
+  // DEMO BALANCE
   const balance = document.getElementById("balance");
   const claimBtn = document.getElementById("claimBtn");
   const claimStatus = document.getElementById("claimStatus");
@@ -121,7 +125,9 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.getItem("stargram_balance") || 0
   );
 
-  if (balance) balance.textContent = currentBalance + " ⭐";
+  if (balance) {
+    balance.textContent = currentBalance;
+  }
 
   claimBtn?.addEventListener("click", () => {
     const today = new Date().toLocaleDateString();
@@ -139,16 +145,17 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("stargram_balance", currentBalance);
     localStorage.setItem("stargram_claim_date", today);
 
-    if (balance) balance.textContent = currentBalance + " ⭐";
+    if (balance) balance.textContent = currentBalance;
+
     if (claimStatus) {
       claimStatus.textContent = "Получено 25 демонстрационных ⭐";
     }
   });
 
-  // ===== MENU =====
+  // MENU
   document.getElementById("menuBtn")?.addEventListener("click", () => {
     alert("Меню StarGram");
   });
 
-  console.log("StarGram buttons initialized");
+  console.log("All StarGram buttons initialized");
 });
