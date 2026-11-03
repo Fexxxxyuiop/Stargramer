@@ -114,7 +114,78 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js"></script>
+<!-- STARGRAM AUCTION -->
+<section id="auctionPage" class="page" style="display:none;padding:20px;color:white;background:#101114;min-height:100vh;">
+  <h1>⚡ StarGram Auction</h1>
+  <p style="color:#999">Аукцион виртуальных предметов</p>
 
+  <div style="display:flex;gap:10px;margin:20px 0">
+    <button onclick="showAuction('all')">Все</button>
+    <button onclick="showAuction('username')">Имена</button>
+    <button onclick="showAuction('gift')">Подарки</button>
+  </div>
+
+  <div id="auctionBalance" style="background:#202127;padding:15px;border-radius:14px">
+    ⭐ Баланс: <b id="gramBalance">1000</b> Gram
+  </div>
+
+  <div id="auctionLots"></div>
+
+  <p style="font-size:12px;color:#888;margin-top:25px">
+    Gram — демонстрационные баллы без денежной стоимости.
+    Лоты и ставки не являются реальными сделками.
+  </p>
+</section>
+
+<script>
+const demoLots = [
+  {id:1,type:'username',title:'@stargram',description:'Редкое имя StarGram',price:120},
+  {id:2,type:'username',title:'@veiro',description:'Короткое имя StarGram',price:180},
+  {id:3,type:'gift',title:'💎 Crystal Gift',description:'Коллекционный подарок StarGram',price:250},
+  {id:4,type:'gift',title:'🌌 Galaxy Gift',description:'Редкий виртуальный подарок',price:320}
+];
+
+let demoBalance = Number(localStorage.getItem('sg_demo_gram') || 1000);
+
+function showAuction(type='all') {
+  const page = document.getElementById('auctionPage');
+  if (!page) return;
+
+  page.style.display = 'block';
+  document.getElementById('gramBalance').textContent = demoBalance;
+
+  const lots = demoLots.filter(lot => type === 'all' || lot.type === type);
+
+  document.getElementById('auctionLots').innerHTML = lots.map(lot => `
+    <div style="background:#202127;padding:17px;border-radius:15px;margin-top:14px">
+      <h3>${lot.title}</h3>
+      <p style="color:#aaa">${lot.description}</p>
+      <p>Текущая ставка: ⭐ ${lot.price} Gram</p>
+      <button onclick="demoBid(${lot.id})"
+        style="background:#7657e8;color:white;border:0;padding:12px 18px;border-radius:10px">
+        Повысить ставку
+      </button>
+    </div>
+  `).join('');
+}
+
+function demoBid(id) {
+  const lot = demoLots.find(item => item.id === id);
+  const nextPrice = lot.price + 10;
+
+  if (demoBalance < 10) {
+    alert('Недостаточно демонстрационных Gram');
+    return;
+  }
+
+  demoBalance -= 10;
+  lot.price = nextPrice;
+
+  localStorage.setItem('sg_demo_gram', demoBalance);
+  showAuction('all');
+  alert('Демонстрационная ставка обновлена!');
+}
+</script>
 </body>
 </html>
 
