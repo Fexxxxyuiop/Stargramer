@@ -7,44 +7,67 @@
   <meta name="theme-color" content="#17212b">
   <title>StarGram</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="app.js" defer></script>
 </head>
 <body>
+
   <header class="topbar">
     <button class="menu-btn" id="menuBtn">☰</button>
-    <h1 id="pageTitle">StarGram</h1>
+    <h1 id="pageTitle">Чаты</h1>
     <button class="search-btn" id="searchBtn">⌕</button>
   </header>
 
   <main>
     <section class="search-wrap" id="searchWrap" hidden>
-      <input id="chatSearch" placeholder="Поиск">
+      <input id="chatSearch" placeholder="Поиск чатов">
     </section>
 
     <section class="page active" id="chatsPage">
       <div class="stories">
-        <div class="story"><div class="story-avatar add">＋</div><small>Моя история</small></div>
-        <div class="story"><div class="story-avatar">🌟</div><small>StarGram</small></div>
-        <div class="story"><div class="story-avatar">🎁</div><small>Gifts</small></div>
-        <div class="story"><div class="story-avatar">🚀</div><small>Новости</small></div>
+        <div class="story">
+          <div class="story-avatar add">＋</div>
+          <small>Моя история</small>
+        </div>
+        <div class="story">
+          <div class="story-avatar">🌟</div>
+          <small>StarGram</small>
+        </div>
+        <div class="story">
+          <div class="story-avatar">🎁</div>
+          <small>Gifts</small>
+        </div>
+        <div class="story">
+          <div class="story-avatar">🚀</div>
+          <small>Новости</small>
+        </div>
       </div>
+
       <div class="section-title">Все чаты</div>
+
       <div id="chatList">
         <div class="chat-row">
           <div class="chat-avatar blue">S</div>
-          <div class="chat-info"><b>StarGram</b><p>Добро пожаловать!</p></div>
+          <div class="chat-info">
+            <b>StarGram</b>
+            <p>Добро пожаловать!</p>
+          </div>
           <time>сейчас</time>
         </div>
+
         <div class="chat-row">
           <div class="chat-avatar">🎁</div>
-          <div class="chat-info"><b>Подарки</b><p>Твоя коллекция подарков</p></div>
+          <div class="chat-info">
+            <b>Подарки</b>
+            <p>Твоя коллекция подарков</p>
+          </div>
           <time>вчера</time>
         </div>
+
         <div class="chat-row">
           <div class="chat-avatar">⭐</div>
-          <div class="chat-info"><b>StarGram News</b><p>Новости приложения</p></div>
+          <div class="chat-info">
+            <b>StarGram News</b>
+            <p>Новости приложения</p>
+          </div>
           <time>пн</time>
         </div>
       </div>
@@ -66,7 +89,7 @@
         <div class="gift-card"><span>🚀</span><b>Ракета</b></div>
         <div class="gift-card"><span>💎</span><b>Кристалл</b></div>
       </div>
-      <p class="note">Демонстрационные подарки. Официальные Telegram Gifts подключим отдельно.</p>
+      <p class="note">Демонстрационные подарки StarGram.</p>
     </section>
 
     <section class="page" id="profilePage">
@@ -82,12 +105,16 @@
   </main>
 
   <nav class="bottom-nav">
-    <button class="nav-item active" data-target="chatsPage"><span>▤</span>Чаты</button>
-    <button class="nav-item" data-target="contactsPage"><span>♙</span>Контакты</button>
-    <button class="nav-item" data-target="giftsPage"><span>🎁</span>Подарки</button>
-    <button class="nav-item" data-target="profilePage"><span>●</span>Профиль</button>
+    <button class="nav-item active" data-target="chatsPage">▤ Чаты</button>
+    <button class="nav-item" data-target="contactsPage">♙ Контакты</button>
+    <button class="nav-item" data-target="giftsPage">🎁 Подарки</button>
+    <button class="nav-item" data-target="profilePage">● Профиль</button>
   </nav>
 
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js"></script>
+
 </body>
 </html>
+
